@@ -37,6 +37,7 @@
 /// - `skippedResources`: An array of resources that are already cached before the prefetching starting.
 /// - `failedResources`: An array of resources that fail to be downloaded. It could because of being cancelled while downloading, encountered an error when downloading or the download not being started at all.
 /// - `completedResources`: An array of resources that are downloaded and cached successfully.
+@available(OSX 10.10, *)
 public typealias PrefetcherProgressBlock = ((_ skippedResources: [Resource], _ failedResources: [Resource], _ completedResources: [Resource]) -> ())
 
 /// Completion block of prefetcher.
@@ -44,11 +45,12 @@ public typealias PrefetcherProgressBlock = ((_ skippedResources: [Resource], _ f
 /// - `skippedResources`: An array of resources that are already cached before the prefetching starting.
 /// - `failedResources`: An array of resources that fail to be downloaded. It could because of being cancelled while downloading, encountered an error when downloading or the download not being started at all.
 /// - `completedResources`: An array of resources that are downloaded and cached successfully.
+@available(OSX 10.10, *)
 public typealias PrefetcherCompletionHandler = ((_ skippedResources: [Resource], _ failedResources: [Resource], _ completedResources: [Resource]) -> ())
 
 /// `ImagePrefetcher` represents a downloading manager for requesting many images via URLs, then caching them.
 /// This is useful when you know a list of image resources and want to download them before showing.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public class ImagePrefetcher {
     
     /// The maximum concurrent downloads to use when prefetching images. Default is 5.

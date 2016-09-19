@@ -21,6 +21,7 @@ Permission is granted to anyone to use this software for any purpose,including c
 
 import Foundation
 
+@available(OSX 10.10, *)
 public struct StringProxy {
     fileprivate let base: String
     init(proxy: String) {
@@ -28,6 +29,7 @@ public struct StringProxy {
     }
 }
 
+@available(OSX 10.10, *)
 extension String: KingfisherCompatible {
     public typealias CompatibleType = StringProxy
     public var kf: CompatibleType {
@@ -35,6 +37,7 @@ extension String: KingfisherCompatible {
     }
 }
 
+@available(OSX 10.10, *)
 extension StringProxy {
     var md5: String {
         if let data = base.data(using: .utf8, allowLossyConversion: true) {
@@ -60,6 +63,7 @@ extension StringProxy {
 
 
 /** array of bytes, little-endian representation */
+@available(OSX 10.10, *)
 func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
     let totalBytes = length ?? (MemoryLayout<T>.size * 8)
     
@@ -80,6 +84,7 @@ func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
     return bytes
 }
 
+@available(OSX 10.10, *)
 extension Int {
     /** Array of bytes with optional padding (little-endian) */
     func bytes(_ totalBytes: Int = MemoryLayout<Int>.size) -> [UInt8] {
@@ -88,6 +93,7 @@ extension Int {
     
 }
 
+@available(OSX 10.10, *)
 extension NSMutableData {
     
     /** Convenient way to append bytes */
@@ -97,6 +103,7 @@ extension NSMutableData {
     
 }
 
+@available(OSX 10.10, *)
 protocol HashProtocol {
     var message: Array<UInt8> { get }
     
@@ -104,6 +111,7 @@ protocol HashProtocol {
     func prepare(_ len: Int) -> Array<UInt8>
 }
 
+@available(OSX 10.10, *)
 extension HashProtocol {
     
     func prepare(_ len: Int) -> Array<UInt8> {
@@ -126,6 +134,7 @@ extension HashProtocol {
     }
 }
 
+@available(OSX 10.10, *)
 func toUInt32Array(_ slice: ArraySlice<UInt8>) -> Array<UInt32> {
     var result = Array<UInt32>()
     result.reserveCapacity(16)
@@ -142,6 +151,7 @@ func toUInt32Array(_ slice: ArraySlice<UInt8>) -> Array<UInt32> {
     return result
 }
 
+@available(OSX 10.10, *)
 struct BytesIterator: IteratorProtocol {
     
     let chunkSize: Int
@@ -162,6 +172,7 @@ struct BytesIterator: IteratorProtocol {
     }
 }
 
+@available(OSX 10.10, *)
 struct BytesSequence: Sequence {
     let chunkSize: Int
     let data: [UInt8]
@@ -171,10 +182,12 @@ struct BytesSequence: Sequence {
     }
 }
 
+@available(OSX 10.10, *)
 func rotateLeft(_ value: UInt32, bits: UInt32) -> UInt32 {
     return ((value << bits) & 0xFFFFFFFF) | (value >> (32 - bits))
 }
 
+@available(OSX 10.10, *)
 class MD5: HashProtocol {
     
     static let size = 16 // 128 / 8

@@ -36,12 +36,12 @@ private let ciContext = CIContext(options: nil)
 public typealias Transformer = (CIImage) -> CIImage?
 
 /// Supply a filter to create an `ImageProcessor`.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public protocol CIImageProcessor: ImageProcessor {
     var filter: Filter { get }
 }
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension CIImageProcessor {
     public func process(item: ImageProcessItem, options: KingfisherOptionsInfo) -> Image? {
         switch item {
@@ -54,7 +54,7 @@ extension CIImageProcessor {
 }
 
 /// Wrapper for a `Transformer` of CIImage filters.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct Filter {
     
     let transform: Transformer
@@ -96,7 +96,7 @@ public struct Filter {
     }
 }
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     /// Apply a `Filter` containing `CIImage` transformer to `self`.
     ///
@@ -131,7 +131,7 @@ extension Kingfisher where Base: Image {
 
 }
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public extension Image {
     
     /// Apply a `Filter` containing `CIImage` transformer to `self`.

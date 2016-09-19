@@ -45,6 +45,7 @@ import CoreImage
 #endif
 
 // MARK: - Image Properties
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     #if os(macOS)
     var cgImage: CGImage? {
@@ -121,6 +122,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Image Conversion
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     #if os(macOS)
     static func image(cgImage: CGImage, scale: CGFloat, refImage: Image?) -> Image {
@@ -171,6 +173,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Image Representation
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     // MARK: - PNG
     func pngRepresentation() -> Data? {
@@ -236,6 +239,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Create images from data
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     static func animated(with data: Data, scale: CGFloat = 1.0, duration: TimeInterval = 0.0, preloadAll: Bool) -> Image? {
         
@@ -339,7 +343,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Image Transforming
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     // MARK: - Round Corner
     /// Create a round corner image based on `self`.
@@ -598,6 +602,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Decode
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     var decoded: Image? {
         return decoded(scale: scale)
@@ -631,6 +636,7 @@ extension Kingfisher where Base: Image {
 }
 
 /// Reference the source image reference
+@available(OSX 10.10, *)
 class ImageSource {
     var imageRef: CGImageSource?
     init(ref: CGImageSource) {
@@ -639,6 +645,7 @@ class ImageSource {
 }
 
 // MARK: - Image format
+@available(OSX 10.10, *)
 private struct ImageHeaderData {
     static var PNG: [UInt8] = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
     static var JPEG_SOI: [UInt8] = [0xFF, 0xD8]
@@ -652,6 +659,7 @@ enum ImageFormat {
 
 
 // MARK: - Misc Helpers
+@available(OSX 10.10, *)
 public struct DataProxy {
     fileprivate let base: Data
     init(proxy: Data) {
@@ -659,6 +667,7 @@ public struct DataProxy {
     }
 }
 
+@available(OSX 10.10, *)
 extension Data: KingfisherCompatible {
     public typealias CompatibleType = DataProxy
     public var kf: DataProxy {
@@ -666,6 +675,7 @@ extension Data: KingfisherCompatible {
     }
 }
 
+@available(OSX 10.10, *)
 extension DataProxy {
     var imageFormat: ImageFormat {
         var buffer = [UInt8](repeating: 0, count: 8)
@@ -688,6 +698,7 @@ extension DataProxy {
     }
 }
 
+@available(OSX 10.10, *)
 public struct CGSizeProxy {
     fileprivate let base: CGSize
     init(proxy: CGSize) {
@@ -695,6 +706,7 @@ public struct CGSizeProxy {
     }
 }
 
+@available(OSX 10.10, *)
 extension CGSize: KingfisherCompatible {
     public typealias CompatibleType = CGSizeProxy
     public var kf: CGSizeProxy {
@@ -702,6 +714,7 @@ extension CGSize: KingfisherCompatible {
     }
 }
 
+@available(OSX 10.10, *)
 extension CGSizeProxy {
     func constrained(_ size: CGSize) -> CGSize {
         let aspectWidth = round(aspectRatio * size.height)
@@ -722,7 +735,7 @@ extension CGSizeProxy {
     }
 }
 
-
+@available(OSX 10.10, *)
 extension CGImage {
     var isARGB8888: Bool {
         return bitsPerPixel == 32 && bitsPerComponent == 8 && bitmapInfo.contains(.alphaInfoMask)
@@ -745,6 +758,7 @@ extension CGImage {
     }
 }
 
+@available(OSX 10.10, *)
 extension CGBitmapInfo {
     var fixed: CGBitmapInfo {
         var fixed = self
@@ -760,7 +774,7 @@ extension CGBitmapInfo {
     }
 }
 
-
+@available(OSX 10.10, *)
 extension Kingfisher where Base: Image {
     
     func draw(cgImage: CGImage?, to size: CGSize, draw: ()->()) -> Image {
@@ -815,7 +829,7 @@ extension Kingfisher where Base: Image {
     #endif
 }
 
-
+@available(OSX 10.10, *)
 extension CGContext {
     static func createARGBContext(from imageRef: CGImage) -> CGContext? {
         
@@ -845,6 +859,7 @@ extension CGContext {
     }
 }
 
+@available(OSX 10.10, *)
 extension Double {
     var isEven: Bool {
         return truncatingRemainder(dividingBy: 2.0) == 0
@@ -852,7 +867,7 @@ extension Double {
 }
 
 // MARK: - Deprecated. Only for back compatibility.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension Image {
     /**
      Normalize the image. This method does nothing in OS X.

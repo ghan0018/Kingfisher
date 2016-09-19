@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(OSX 10.10, *)
 class Box<T> {
     let value: T
     init(value: T) {

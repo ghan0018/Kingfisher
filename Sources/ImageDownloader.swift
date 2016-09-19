@@ -31,13 +31,15 @@ import UIKit
 #endif
 
 /// Progress update block of downloader.
+@available(OSX 10.10, *)
 public typealias ImageDownloaderProgressBlock = DownloadProgressBlock
 
 /// Completion block of downloader.
+@available(OSX 10.10, *)
 public typealias ImageDownloaderCompletionHandler = ((_ image: Image?, _ error: NSError?, _ url: URL?, _ originalData: Data?) -> ())
 
 /// Download task.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct RetrieveImageDownloadTask {
     let internalTask: URLSessionDataTask
     
@@ -71,6 +73,7 @@ public struct RetrieveImageDownloadTask {
 }
 
 ///The code of errors which `ImageDownloader` might encountered.
+@available(OSX 10.10, *)
 public enum KingfisherError: Int {
     
     /// badData: The downloaded data is not an image or the data is corrupted.
@@ -95,10 +98,11 @@ public enum KingfisherError: Int {
 }
 
 /// Key will be used in the `userInfo` of `.invalidStatusCode`
+@available(OSX 10.10, *)
 public let KingfisherErrorStatusCodeKey = "statusCode"
 
 /// Protocol of `ImageDownloader`.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public protocol ImageDownloaderDelegate: class {
     /**
     Called when the `ImageDownloader` object successfully downloaded an image from specified URL.
@@ -128,7 +132,7 @@ public protocol ImageDownloaderDelegate: class {
     func isValidStatusCode(_ code: Int, for downloader: ImageDownloader) -> Bool
 }
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension ImageDownloaderDelegate {
     public func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: URLResponse?) {}
     
@@ -138,7 +142,7 @@ extension ImageDownloaderDelegate {
 }
 
 /// Protocol indicates that an authentication challenge could be handled.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public protocol AuthenticationChallengeResponsable: class {
     /**
      Called when an session level authentication challenge is received.
@@ -153,7 +157,7 @@ public protocol AuthenticationChallengeResponsable: class {
     func downloader(_ downloader: ImageDownloader, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
 }
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension AuthenticationChallengeResponsable {
     
     func downloader(_ downloader: ImageDownloader, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
@@ -171,10 +175,10 @@ extension AuthenticationChallengeResponsable {
 }
 
 /// `ImageDownloader` represents a downloading manager for requesting the image with a URL from server.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 open class ImageDownloader: NSObject {
     
-    @available(OSXApplicationExtension 10.10, *)
+    @available(OSX 10.10, *)
     class ImageFetchLoad {
         var callbacks = [CallbackPair]()
         var responseData = NSMutableData()
@@ -264,7 +268,7 @@ open class ImageDownloader: NSObject {
 }
 
 // MARK: - Download method
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension ImageDownloader {
     /**
     Download an image with a URL and option.
@@ -384,7 +388,7 @@ extension ImageDownloader {
 /// If we use `ImageDownloader` as the session delegate, it will not be released.
 /// So we need an additional handler to break the retain cycle.
 // See https://github.com/onevcat/Kingfisher/issues/235
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, AuthenticationChallengeResponsable {
     
     // The holder will keep downloader not released while a data task is being executed.
@@ -516,5 +520,5 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, Authentic
 }
 
 // Placeholder. For retrieving extension methods of ImageDownloaderDelegate
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension ImageDownloader: ImageDownloaderDelegate {}

@@ -24,12 +24,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+#if os(iOS)
+    import UIKit
+#endif
 
 // MARK: - Set Images
 /**
  *	Set image to use in button from web for a specified state.
  */
+#if os(iOS)
 extension Kingfisher where Base: UIButton {
     /**
      Set an image to use for a specified state with a resource, a placeholder image, options, progress handler and
@@ -397,3 +400,4 @@ extension UIButton {
     fileprivate func kf_setBackgroundImageTask(_ task: RetrieveImageTask?) { return kf.setBackgroundImageTask(task) }
     
 }
+#endif

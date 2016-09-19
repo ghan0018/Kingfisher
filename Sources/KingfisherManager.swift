@@ -30,12 +30,14 @@ import AppKit
 import UIKit
 #endif
 
+@available(OSX 10.10, *)
 public typealias DownloadProgressBlock = ((_ receivedSize: Int64, _ totalSize: Int64) -> ())
+@available(OSX 10.10, *)
 public typealias CompletionHandler = ((_ image: Image?, _ error: NSError?, _ cacheType: CacheType, _ imageURL: URL?) -> ())
 
 /// RetrieveImageTask represents a task of image retrieving process.
 /// It contains an async task of getting image from disk and from network.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public class RetrieveImageTask {
     
     static let empty = RetrieveImageTask()
@@ -73,11 +75,12 @@ public class RetrieveImageTask {
 }
 
 /// Error domain of Kingfisher
+@available(OSX 10.10, *)
 public let KingfisherErrorDomain = "com.onevcat.Kingfisher.Error"
 
 /// Main manager class of Kingfisher. It connects Kingfisher downloader and cache.
 /// You can use this class to retrieve an image via a specified URL from web or cache.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public class KingfisherManager {
     
     /// Shared manager used by the extensions across Kingfisher.

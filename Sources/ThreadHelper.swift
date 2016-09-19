@@ -26,6 +26,7 @@
 
 import Foundation
 
+@available(OSX 10.10, *)
 extension DispatchQueue {
     // This method will dispatch the `block` to self.
     // If `self` is the main queue, and current thread is main thread, the block

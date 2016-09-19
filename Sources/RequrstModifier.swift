@@ -27,10 +27,12 @@
 import Foundation
 
 /// Request modifier of image downloader.
+@available(OSX 10.10, *)
 public protocol ImageDownloadRequestModifier {
     func modified(for request: URLRequest) -> URLRequest?
 }
 
+@available(OSX 10.10, *)
 struct NoModifier: ImageDownloadRequestModifier {
     static let `default` = NoModifier()
     private init() {}
@@ -39,6 +41,7 @@ struct NoModifier: ImageDownloadRequestModifier {
     }
 }
 
+@available(OSX 10.10, *)
 public struct AnyModifier: ImageDownloadRequestModifier {
     
     let block: (URLRequest) -> URLRequest?

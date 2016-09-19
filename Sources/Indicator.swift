@@ -36,6 +36,7 @@
     public typealias IndicatorView = UIView
 #endif
 
+@available(OSX 10.10, *)
 public enum IndicatorType {
     /// No indicator.
     case none
@@ -48,6 +49,7 @@ public enum IndicatorType {
 }
 
 // MARK: - Indicator Protocol
+@available(OSX 10.10, *)
 public protocol Indicator {
     func startAnimatingView()
     func stopAnimatingView()
@@ -56,6 +58,7 @@ public protocol Indicator {
     var view: IndicatorView { get }
 }
 
+@available(OSX 10.10, *)
 extension Indicator {
     #if os(macOS)
     public var viewCenter: CGPoint {
@@ -86,6 +89,7 @@ extension Indicator {
 
 // MARK: - ActivityIndicator
 // Displays a NSProgressIndicator / UIActivityIndicatorView
+@available(OSX 10.10, *)
 struct ActivityIndicator: Indicator {
 
     #if os(macOS)
@@ -135,7 +139,7 @@ struct ActivityIndicator: Indicator {
 
 // MARK: - ImageIndicator
 // Displays an ImageView. Supports gif
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 struct ImageIndicator: Indicator {
     private let animatedImageIndicatorView: ImageView
 

@@ -35,7 +35,7 @@ import UIKit
 /**
  *	Set image to use from web.
  */
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension Kingfisher where Base: ImageView {
     /**
      Set an image with a resource, a placeholder image, options, progress handler and completion handler.
@@ -51,7 +51,7 @@ extension Kingfisher where Base: ImageView {
      - note: Both the `progressBlock` and `completionHandler` will be invoked in main thread.
      The `CallbackDispatchQueue` specified in `optionsInfo` will not be used in callbacks of this method.
      */
-    @available(OSXApplicationExtension 10.10, *)
+    @available(OSX 10.10, *)
     @discardableResult
     public func setImage(with resource: Resource?,
                          placeholder: Image? = nil,
@@ -148,7 +148,7 @@ private var indicatorKey: Void?
 private var indicatorTypeKey: Void?
 private var imageTaskKey: Void?
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension Kingfisher where Base: ImageView {
     /// Get the image URL binded to this image view.
     public var webURL: URL? {
@@ -224,7 +224,7 @@ extension Kingfisher where Base: ImageView {
 /**
 *	Set image to use from web. Deprecated. Use `kf` namespacing instead.
 */
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension ImageView {
     /**
     Set an image with a resource, a placeholder image, options, progress handler and completion handler.

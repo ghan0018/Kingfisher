@@ -28,6 +28,7 @@ import Foundation
 
 
 /// `Resource` protocol defines how to download and cache a resource from network.
+@available(OSX 10.10, *)
 public protocol Resource {
     /// The key used in cache.
     var cacheKey: String { get }
@@ -42,6 +43,7 @@ public protocol Resource {
  When passed to image view set methods, Kingfisher will try to download the target 
  image from the `downloadURL`, and then store it with the `cacheKey` as the key in cache.
  */
+@available(OSX 10.10, *)
 public struct ImageResource: Resource {
     /// The key used in cache.
     public let cacheKey: String
@@ -68,6 +70,7 @@ public struct ImageResource: Resource {
  The `absoluteString` of this URL is used as `cacheKey`. And the URL itself will be used as `downloadURL`.
  If you need customize the url and/or cache key, use `ImageResource` instead.
  */
+@available(OSX 10.10, *)
 extension URL: Resource {
     public var cacheKey: String { return absoluteString }
     public var downloadURL: URL { return self }

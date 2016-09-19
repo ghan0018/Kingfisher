@@ -58,6 +58,7 @@ Apple's UIViewAnimationOptions is used under the hood.
 For custom transition, you should specified your own transition options, animations and 
 comletion handler as well.
 */
+@available(OSX 10.10, *)
 public enum ImageTransition {
     ///  No animation transistion.
     case none

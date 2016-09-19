@@ -26,19 +26,20 @@
 
 import Foundation
 import CoreGraphics
-
+import Cocoa
 
 /// The item which could be processed by an `ImageProcessor`
 ///
 /// - image: Input image
 /// - data:  Input data
+@available(OSX 10.10, *)
 public enum ImageProcessItem {
     case image(Image)
     case data(Data)
 }
 
 /// An `ImageProcessor` would be used to convert some downloaded data to an image.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public protocol ImageProcessor {
     /// Identifier of the processor. It will be used to identify the processor when 
     /// caching and retriving an image. You might want to make sure that processors with
@@ -65,10 +66,10 @@ public protocol ImageProcessor {
     func process(item: ImageProcessItem, options: KingfisherOptionsInfo) -> Image?
 }
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 typealias ProcessorImp = ((ImageProcessItem, KingfisherOptionsInfo) -> Image?)
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public extension ImageProcessor {
     
     /// Append an `ImageProcessor` to another. The identifier of the new `ImageProcessor` 
@@ -91,7 +92,7 @@ public extension ImageProcessor {
     }
 }
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 fileprivate struct GeneralProcessor: ImageProcessor {
     let identifier: String
     let p: ProcessorImp
@@ -103,7 +104,7 @@ fileprivate struct GeneralProcessor: ImageProcessor {
 /// The default processor. It convert the input data to a valid image.
 /// Images of .PNG, .JPEG and .GIF format are supported.
 /// If an image is given, `DefaultImageProcessor` will do nothing on it and just return that image.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct DefaultImageProcessor: ImageProcessor {
     
     /// A default `DefaultImageProcessor` could be used across.
@@ -128,7 +129,7 @@ public struct DefaultImageProcessor: ImageProcessor {
 
 /// Processor for making round corner images. Only CG-based images are supported in macOS, 
 /// if a non-CG image passed in, the processor will do nothing.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct RoundCornerImageProcessor: ImageProcessor {
     public let identifier: String
 
@@ -156,7 +157,7 @@ public struct RoundCornerImageProcessor: ImageProcessor {
         }
     }
     
-    @available(OSXApplicationExtension 10.10, *)
+    @available(OSX 10.10, *)
     public func process(item: ImageProcessItem, options: KingfisherOptionsInfo) -> Image? {
         switch item {
         case .image(let image):
@@ -169,7 +170,7 @@ public struct RoundCornerImageProcessor: ImageProcessor {
 }
 
 /// Processor for resizing images. Only CG-based images are supported in macOS.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct ResizingImageProcessor: ImageProcessor {
     public let identifier: String
     
@@ -198,7 +199,7 @@ public struct ResizingImageProcessor: ImageProcessor {
 
 /// Processor for adding blur effect to images. `Accelerate.framework` is used underhood for 
 /// a better performance. A simulated Gaussian blur with specified blur radius will be applied.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct BlurImageProcessor: ImageProcessor {
     public let identifier: String
     
@@ -227,7 +228,7 @@ public struct BlurImageProcessor: ImageProcessor {
 }
 
 /// Processor for adding an overlay to images. Only CG-based images are supported in macOS.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct OverlayImageProcessor: ImageProcessor {
     
     public var identifier: String
@@ -262,7 +263,7 @@ public struct OverlayImageProcessor: ImageProcessor {
 }
 
 /// Processor for tint images with color. Only CG-based images are supported.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct TintImageProcessor: ImageProcessor {
     
     public let identifier: String
@@ -292,7 +293,7 @@ public struct TintImageProcessor: ImageProcessor {
 
 /// Processor for applying some color control to images. Only CG-based images are supported.
 /// watchOS is not supported.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct ColorControlsProcessor: ImageProcessor {
     
     public let identifier: String
@@ -337,7 +338,7 @@ public struct ColorControlsProcessor: ImageProcessor {
 
 /// Processor for applying black and white effect to images. Only CG-based images are supported.
 /// watchOS is not supported.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct BlackWhiteProcessor: ImageProcessor {
     public let identifier = "com.onevcat.Kingfisher.BlackWhiteProcessor"
     
@@ -358,11 +359,12 @@ public struct BlackWhiteProcessor: ImageProcessor {
 /// - parameter right: Second processor.
 ///
 /// - returns: The concatenated processor.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public func >>(left: ImageProcessor, right: ImageProcessor) -> ImageProcessor {
     return left.append(another: right)
 }
 
+@available(OSX 10.10, *)
 fileprivate extension Color {
     var hex: String {
         var r: CGFloat = 0

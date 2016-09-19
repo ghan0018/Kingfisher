@@ -31,7 +31,7 @@ import AppKit
 /**
  *	Set image to use from web.
  */
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension Kingfisher where Base: NSButton {
     /**
      Set an image with a resource, a placeholder image, options, progress handler and completion handler.
@@ -169,7 +169,7 @@ private var imageTaskKey: Void?
 private var lastAlternateURLKey: Void?
 private var alternateImageTaskKey: Void?
 
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension Kingfisher where Base: NSButton {
     /// Get the image URL binded to this image view.
     public var webURL: URL? {
@@ -211,7 +211,7 @@ extension Kingfisher where Base: NSButton {
 /**
  *	Set image to use from web. Deprecated. Use `kf` namespacing instead.
  */
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 extension NSButton {
     /**
      Set an image with a resource, a placeholder image, options, progress handler and completion handler.

@@ -28,7 +28,7 @@ import Foundation
 
 /// An `CacheSerializer` would be used to convert some data to an image object for 
 /// retrieving from disk cache and vice versa for storing to disk cache.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public protocol CacheSerializer {
     
     /// Get the serialized data from a provided image
@@ -58,7 +58,7 @@ public protocol CacheSerializer {
 /// `DefaultCacheSerializer` is a basic `CacheSerializer` used in default cache of
 /// Kingfisher. It could serialize and deserialize PNG, JEPG and GIF images. For 
 /// image other than these formats, a normalized `pngRepresentation` will be used.
-@available(OSXApplicationExtension 10.10, *)
+@available(OSX 10.10, *)
 public struct DefaultCacheSerializer: CacheSerializer {
     
     public static let `default` = DefaultCacheSerializer()
