@@ -135,6 +135,7 @@ struct ActivityIndicator: Indicator {
 
 // MARK: - ImageIndicator
 // Displays an ImageView. Supports gif
+@available(OSXApplicationExtension 10.10, *)
 struct ImageIndicator: Indicator {
     private let animatedImageIndicatorView: ImageView
 

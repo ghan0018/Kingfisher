@@ -48,6 +48,7 @@ public typealias PrefetcherCompletionHandler = ((_ skippedResources: [Resource],
 
 /// `ImagePrefetcher` represents a downloading manager for requesting many images via URLs, then caching them.
 /// This is useful when you know a list of image resources and want to download them before showing.
+@available(OSXApplicationExtension 10.10, *)
 public class ImagePrefetcher {
     
     /// The maximum concurrent downloads to use when prefetching images. Default is 5.

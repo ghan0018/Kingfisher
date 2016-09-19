@@ -35,6 +35,7 @@ public typealias CompletionHandler = ((_ image: Image?, _ error: NSError?, _ cac
 
 /// RetrieveImageTask represents a task of image retrieving process.
 /// It contains an async task of getting image from disk and from network.
+@available(OSXApplicationExtension 10.10, *)
 public class RetrieveImageTask {
     
     static let empty = RetrieveImageTask()
@@ -42,6 +43,9 @@ public class RetrieveImageTask {
     // If task is canceled before the download task started (which means the `downloadTask` is nil),
     // the download task should not begin.
     var cancelledBeforeDownloadStarting: Bool = false
+    
+    /// It represents a task of retrieving image. You can call `cancel` on it to stop the process.
+    public typealias RetrieveImageDiskTask = DispatchWorkItem
     
     /// The disk retrieve task in this image task. Kingfisher will try to look up in cache first. This task represent the cache search task.
     public var diskRetrieveTask: RetrieveImageDiskTask?
@@ -73,6 +77,7 @@ public let KingfisherErrorDomain = "com.onevcat.Kingfisher.Error"
 
 /// Main manager class of Kingfisher. It connects Kingfisher downloader and cache.
 /// You can use this class to retrieve an image via a specified URL from web or cache.
+@available(OSXApplicationExtension 10.10, *)
 public class KingfisherManager {
     
     /// Shared manager used by the extensions across Kingfisher.

@@ -34,12 +34,15 @@ import UIKit
 /**
 *	KingfisherOptionsInfo is a typealias for [KingfisherOptionsInfoItem]. You can use the enum of option item with value to control some behaviors of Kingfisher.
 */
+@available(OSXApplicationExtension 10.10, *)
 public typealias KingfisherOptionsInfo = [KingfisherOptionsInfoItem]
+@available(OSXApplicationExtension 10.10, *)
 let KingfisherEmptyOptionsInfo = [KingfisherOptionsInfoItem]()
 
 /**
 Items could be added into KingfisherOptionsInfo.
 */
+@available(OSXApplicationExtension 10.10, *)
 public enum KingfisherOptionsInfoItem {
     /// The associated value of this member should be an ImageCache object. Kingfisher will use the specified
     /// cache object when handling related operations, including trying to retrieve the cached images and store
@@ -116,6 +119,7 @@ precedencegroup ItemComparisonPrecedence {
 infix operator <== : ItemComparisonPrecedence
 
 // This operator returns true if two `KingfisherOptionsInfoItem` enum is the same, without considering the associated values.
+@available(OSXApplicationExtension 10.10, *)
 func <== (lhs: KingfisherOptionsInfoItem, rhs: KingfisherOptionsInfoItem) -> Bool {
     switch (lhs, rhs) {
     case (.targetCache(_), .targetCache(_)): return true
@@ -137,6 +141,7 @@ func <== (lhs: KingfisherOptionsInfoItem, rhs: KingfisherOptionsInfoItem) -> Boo
     }
 }
 
+@available(OSXApplicationExtension 10.10, *)
 extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
     func firstMatchIgnoringAssociatedValue(_ target: Iterator.Element) -> Iterator.Element? {
         return index { $0 <== target }.flatMap { self[$0] }
@@ -147,6 +152,7 @@ extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
     }
 }
 
+@available(OSXApplicationExtension 10.10, *)
 extension Collection where Iterator.Element == KingfisherOptionsInfoItem {
     var targetCache: ImageCache {
         if let item = firstMatchIgnoringAssociatedValue(.targetCache(.default)),

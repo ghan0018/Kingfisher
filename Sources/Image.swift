@@ -339,6 +339,7 @@ extension Kingfisher where Base: Image {
 }
 
 // MARK: - Image Transforming
+@available(OSXApplicationExtension 10.10, *)
 extension Kingfisher where Base: Image {
     // MARK: - Round Corner
     /// Create a round corner image based on `self`.
@@ -851,6 +852,7 @@ extension Double {
 }
 
 // MARK: - Deprecated. Only for back compatibility.
+@available(OSXApplicationExtension 10.10, *)
 extension Image {
     /**
      Normalize the image. This method does nothing in OS X.
